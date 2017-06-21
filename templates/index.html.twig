@@ -1,0 +1,87 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+<div class="row">
+
+  <br />
+
+  <form action="javascript:void(0)" method="post">
+
+    {% for plate in plates %}
+
+      <div class="col-sm-4 col-md-3">
+        <div class="thumbnail">
+          <img src="{{ plate.image }}">
+          <div class="caption">
+            <h3>{{ plate.name }}</h3>
+            <p>{{ plate.description }}</p>
+
+            <div class="row">
+              <div class="col-sm-2">
+                <a href="javascript:void(0)" class="btn btn-primary less" role="button" data-id="{{ plate.id }}">
+                  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </a>
+              </div>
+              <div class="col-sm-4">
+                <input type="number" class="col-sm-12 quantity-input-{{ plate.id }} quantity-input" data-price="{{ plate.price }}" value="0" name="quantidade[{{ plate.name }}]" />
+              </div>
+              <div class="col-sm-2">
+                <a href="javascript:void(0)" class="btn btn-primary more" role="button" data-id="{{ plate.id }}">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    {% endfor %}
+
+    <div class="observacao-box col-md-12">
+      <p class="pull-right">Observação</p>
+      <br />
+      <br />
+      <textarea name="observacao" class="pull-right"></textarea>
+    </div>
+
+  </form>
+
+</div>
+
+<div class="alert alert-info total pull-right" role="alert"><b>Total</b>: R$ 0,00</div>
+
+<button type="button" class="btn btn-success btn-lg pull-right submit">Salvar Pedido</button>
+
+{% endblock %}
+
+{% block scripts %}
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    window.url_save = "{{ url('save') }}";
+  </script>
+
+  <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Atenção</h4>
+        </div>
+        <div class="modal-body" id="modal-body-senha">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+{% endblock %}

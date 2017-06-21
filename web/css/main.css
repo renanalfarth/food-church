@@ -1,0 +1,28 @@
+body {
+  padding-top: 50px!important;
+}
+
+.quantity-input {
+  border-radius: 2px;
+  border: 1px solid #000;
+  padding: 6px;
+  width: 84px!important;
+}
+
+.total {
+    width: 100%;
+    text-align: right;
+}
+
+.caption {
+  text-align: center;
+}
+
+.observacao-box {
+  float: right;
+  padding-bottom: 20px;
+}
+
+.order-desc {
+  color: #B22222;
+}
