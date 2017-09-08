@@ -1,40 +1,27 @@
-function formatReal(numero) {
-    var tmp = numero + '';
-    var neg = false;
+function formatReal(n) {
+  return n.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+}
 
-    if (tmp - (Math.round(numero)) == 0) {
-        tmp = tmp + '00';
+function getTotais() {
+
+  $.ajax({
+    url: window.url_totais,
+    method: 'POST',
+    dataType: "json",
+    success: function(result) {
+
+      var totais = '<p>Qtd Vendidos:</p>';
+
+      for(i=0;i<result.length;i++) {
+        var total = result[i];
+        totais += total.name + ' - ' + total.quantity + '<br />';
+      }
+
+      $('#totais-geral').html(totais);
+
     }
+  });
 
-    if (tmp.indexOf(".")) {
-        tmp = tmp.replace(".", "");
-    }
-
-    if (tmp.indexOf("-") == 0) {
-        neg = true;
-        tmp = tmp.replace("-", "");
-    }
-
-    if (tmp.length == 1) tmp = "0" + tmp
-
-    tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
-
-    if (tmp.length > 6)
-        tmp = tmp.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
-
-    if (tmp.length > 9)
-        tmp = tmp.replace(/([0-9]{3}).([0-9]{3}),([0-9]{2}$)/g, ".$1.$2,$3");
-
-    if (tmp.length = 12)
-        tmp = tmp.replace(/([0-9]{3}).([0-9]{3}).([0-9]{3}),([0-9]{2}$)/g, ".$1.$2.$3,$4");
-
-    if (tmp.length > 12)
-        tmp = tmp.replace(/([0-9]{3}).([0-9]{3}).([0-9]{3}).([0-9]{3}),([0-9]{2}$)/g, ".$1.$2.$3.$4,$5");
-
-    if (tmp.indexOf(".") == 0) tmp = tmp.replace(".", "");
-    if (tmp.indexOf(",") == 0) tmp = tmp.replace(",", "0,");
-
-    return (neg ? '-' + tmp : tmp);
 }
 
 function calculaValores() {
@@ -44,18 +31,21 @@ function calculaValores() {
   $('.quantity-input').each(function() {
     var quantity = $(this).val();
     var price    = $(this).attr('data-price');
-    console.log(quantity);
+
     if(quantity <=0) {
       return true;
     }
 
-    total += quantity * price;
-
+    total += (quantity * price);
   });
+
+  console.log(formatReal(total));
 
   total = formatReal(total);
 
   $('.total').html('<b>Total</b>: R$ ' + total);
+
+  getTotais();
 
 }
 
@@ -123,6 +113,9 @@ $( document ).ready(function() {
               $(this).val(0);
             });
             $('.total').html('<b>Total</b>: R$ 0,00');
+
+            getTotais();
+
           }
         },
         error: function(err) {

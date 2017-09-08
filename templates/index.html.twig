@@ -10,7 +10,7 @@
 
     {% for plate in plates %}
 
-      <div class="col-sm-4 col-md-3">
+      <div class="col-sm-2 col-5">
         <div class="thumbnail">
           <img src="{{ plate.image }}">
           <div class="caption">
@@ -52,8 +52,12 @@
 
 <div class="alert alert-info total pull-right" role="alert"><b>Total</b>: R$ 0,00</div>
 
-<button type="button" class="btn btn-success btn-lg pull-right submit">Salvar Pedido</button>
+<div id="totais-geral"></div>
 
+<button type="button" class="btn btn-success btn-lg pull-right submit">Salvar Pedido</button>
+<br />
+<br />
+<br />
 {% endblock %}
 
 {% block scripts %}
@@ -62,7 +66,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
-    window.url_save = "{{ url('save') }}";
+    window.url_save   = "{{ url('save') }}";
+    window.url_totais = "{{ url('totais') }}";
   </script>
 
   <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>

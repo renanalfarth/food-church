@@ -26,3 +26,24 @@ body {
 .order-desc {
   color: #B22222;
 }
+
+.row h4 {
+  padding-left: 15px;
+}
+
+.col-5 {
+  width: 20%!important;
+}
+
+.col-5 .thumbnail {
+  height: 375px;
+}
+
+#totais-geral  {
+  float: left;
+  padding-bottom: 30px;
+}
+
+.row {
+  padding-bottom: 30px;
+}
