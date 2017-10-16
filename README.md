@@ -8,10 +8,10 @@ Actual features:
 - After the finish of the order, the system provides a password for the client.
 - A orders page, where the kitchen workers can see the whole order from a client and a password, so they can mount the order, and deliver to the right client.
 - After the deliver, it's possible to mark the order as "Delivered", so the page will hide this order and show only undelivered orders.
+- Make show a counter of the number of each plate sold, to control when you have a maximum number of plates to sell.
+- Create a page of the orders already delivered.
 
 Future improvements
 
-- Make show a counter of the number of each plate sold, to control when you have a maximum number of plates to sell.
-- Create a page of the orders already delivered by date.
 - Sum all the orders of a day, counting the price of the orders for the cashier to do the balance.
-- Create a page to show the password in a tablet, at the table room where the people are waiting for the order, so the client can get their order when get ready.
+- Create a page to show the order number in a tablet, at the table room where the people are waiting for the order, so the client can get their order when get ready.
